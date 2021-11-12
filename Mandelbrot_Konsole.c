@@ -4,8 +4,8 @@
 //zoom out as far as possible to appreceate the beauty of the mandelbrot fractal
 #define W (1000)
 #define H (333)
-#define N_MAX (50)
-#define ALL
+#define N_MAX (100)
+#define ALLn
 #ifdef ALL
 #define X_MAX (1)
 #define X_MIN (-2)
@@ -13,8 +13,8 @@
 #define Y_MIN (-1.5)
 #else
 #define X_MAX (-0.25)
-#define X_MIN (-0.75)
-#define Y_MAX (1)
+#define X_MIN (-0.5)
+#define Y_MAX (0.75)
 #define Y_MIN (0.5)
 #endif
 
@@ -47,7 +47,7 @@ int main(void) {
 	//Variablen für die Umwandlung der Koordinatensysteme
 	double math_x, math_y;
 	int cmd_x, cmd_y;
-	char*  pixels = ".,-~:;=!*#$@";
+	char*  pixels = " .,-~:;=!*#$@";
 	
 		
 	//Speicherplatz für das Bild allokieren
@@ -68,7 +68,7 @@ int main(void) {
 			} else {
 				color = (((double)  (iteration)) / ((double) N_MAX)) * 0x00FFFFFF;
 			}*/
-			bild[cmd_y * W + cmd_x] = pixels[(int) iteration * 11 / N_MAX];
+			bild[cmd_y * W + cmd_x] = pixels[(int) iteration * 12 / N_MAX];
 		}
 	}
 	
