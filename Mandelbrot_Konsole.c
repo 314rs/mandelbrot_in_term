@@ -1,13 +1,22 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
-
-#define W (80)
-#define H (80)
-#define N_MAX (11)
+//zoom out as far as possible to appreceate the beauty of the mandelbrot fractal
+#define W (1000)
+#define H (333)
+#define N_MAX (50)
+#define ALL
+#ifdef ALL
 #define X_MAX (1)
 #define X_MIN (-2)
 #define Y_MAX (1.5)
 #define Y_MIN (-1.5)
+#else
+#define X_MAX (-0.25)
+#define X_MIN (-0.75)
+#define Y_MAX (1)
+#define Y_MIN (0.5)
+#endif
 
 
 void toMath(int cmd_x, int cmd_y, double* math_x, double* math_y) {
@@ -43,7 +52,7 @@ int main(void) {
 		
 	//Speicherplatz für das Bild allokieren
 		//int size = W * H;
-	char* bild = (int*) malloc(W * H * sizeof(int));
+	char* bild = (char*) malloc(W * H * sizeof(char));
 	
 	
 	// weise jeder Rückgabe der mandelbrot-Funktion eine eigene Farbe zu.
@@ -59,17 +68,17 @@ int main(void) {
 			} else {
 				color = (((double)  (iteration)) / ((double) N_MAX)) * 0x00FFFFFF;
 			}*/
-			bild[cmd_y * W + cmd_x] = pixels[iteration];
+			bild[cmd_y * W + cmd_x] = pixels[(int) iteration * 11 / N_MAX];
 		}
 	}
 	
 	
 	//das Bild speichern:
-	for (int x = 0; x < H; x++) {
-		for (int y = 0; y < W; y++) {
-			fprintf(bild[i]);
+	for (int y = 0; y < H; y++) {
+		for (int x = 0; x < W; x++) {
+			printf("%c", bild[y*W+x]);
 		}
-		printf("");
+		printf("\n");
 	}
 	
 	//den Speicherplatz wieder freigeben:
